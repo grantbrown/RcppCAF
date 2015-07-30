@@ -1,0 +1,2 @@
+useDynLib(RcppCAF)
+importFrom(Rcpp, evalCpp)

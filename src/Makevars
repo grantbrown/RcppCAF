@@ -1,0 +1,24 @@
+SOURCES = $(wildcard ./*.cpp)
+SOURCES1 = $(wildcard ./libcaf_core/*.cpp)
+SOURCES2 = $(wildcard ./libcaf_io/*.cpp)
+OBJECTS = $(SOURCES:.cpp=.o)
+OBJECTS1 = $(SOURCES1:.cpp=.o)
+OBJECTS2 = $(SOURCES2:.cpp=.o)
+
+PKG_CPPFLAGS+=-std=c++11 -DCMAKE_INSTALL_LOCAL_ONLY=1 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/libcaf_core -I../inst/libcaf_io 
+
+PKG_LIBS += -L$(abspath ./libcaf_core) -lcaf_core -L$(abspath ./libcaf_core) -lcaf_io 
+
+all: $(SHLIB) 
+
+$(SHLIB): rcaf_main.so libcaf_core/libcaf_core.so libcaf_io/libcaf_io.so 
+
+rcaf_main.so: $(OBJECTS)
+
+libcaf_core/libcaf_core.so: $(OBJECTS1)
+
+libcaf_io/libcaf_io.so: $(OBJECTS2)
+
+
+
+

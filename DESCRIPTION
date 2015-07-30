@@ -1,0 +1,11 @@
+Package: RcppCAF
+Type: Package
+Title: R/Rcpp interface to the CAF C++ concurrency framework
+Version: 1.0
+Date: 2015-07-29
+Author: Grant Brown 
+Maintainer: Grant Brown <grant-brown@uiowa.edu>
+Description: The CAF library (available at http://actor-framework.org/) is an intuitive framework providing concurency to C++ code using an actor model rather than low level threading concepts. This provides a lightweight way to parallelize computationally intensive C++ code.  
+License: BSD-3
+Imports: Rcpp (>= 0.11.6)
+LinkingTo: Rcpp, RcppEigen
