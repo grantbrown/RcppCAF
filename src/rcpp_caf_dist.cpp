@@ -11,7 +11,7 @@ using Eigen::MatrixXd;
 
 // [[Rcpp::depends(RcppEigen)]]
 // [[Rcpp::export]]
-Rcpp::NumericMatrix rcpp_caf_dist(SEXP inMatrix, SEXP ncore) {
+Rcpp::NumericVector rcpp_caf_dist(SEXP inMatrix, SEXP ncore) {
     unsigned int i, j;
     unsigned int nCores = as<unsigned int>(ncore);
     const Map<MatrixXd> locations(as<Map<MatrixXd> >(inMatrix));
@@ -23,7 +23,7 @@ Rcpp::NumericMatrix rcpp_caf_dist(SEXP inMatrix, SEXP ncore) {
     actor_pool::policy plcy = actor_pool::round_robin();
     auto worker_pool = actor_pool::make(plcy);  
 
-    Rcpp::NumericMatrix outputMatrix(locations.rows(), locations.rows());
+    Rcpp::NumericVector outputVector(work_items);
     for (i = 0; i < nCores; i++)
     {
        workers.push_back((*self) -> spawn<dist_node, monitored>(locations, *self));
@@ -43,11 +43,11 @@ Rcpp::NumericMatrix rcpp_caf_dist(SEXP inMatrix, SEXP ncore) {
 
     i = 0;
     (*self) -> receive_for(i, work_items)(
-                [&](unsigned int row1, unsigned int row2, double result){
-                    outputMatrix(row1, row2) = result;
+                [&](unsigned int idx, double result){
+                    outputVector(idx) = result;
                 });
 
 
     delete self;
-    return(outputMatrix);
+    return(outputVector);
 }

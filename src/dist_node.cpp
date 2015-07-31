@@ -10,7 +10,9 @@ dist_node::dist_node(Eigen::MatrixXd locs, actor pr) :
         [=](euclidean_atom, unsigned int row1, unsigned int row2)
         {
             double result = calculateDistance(row1, row2);
-            send(parent, row1, row2, result);
+            unsigned int idx = row1 + row2*(locations.rows() - 1) - 
+                               (row2*(row2 + 1))/2 - 1;
+            send(parent, idx, result);
         },
         [=](exit_atom)
         {
@@ -30,6 +32,5 @@ behavior dist_node::make_behavior(){
 
 double dist_node::calculateDistance(size_t row1, size_t row2)
 {
-    Eigen::MatrixXd rowdiff = (locations.row(row1) - locations.row(row2)); 
-    return(std::sqrt((rowdiff.array()*rowdiff.array()).sum()));
+    return((locations.row(row1) - locations.row(row2)).norm()); 
 }
