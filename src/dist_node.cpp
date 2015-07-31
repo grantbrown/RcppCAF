@@ -30,6 +30,6 @@ behavior dist_node::make_behavior(){
 
 double dist_node::calculateDistance(size_t row1, size_t row2)
 {
-    // Dummy code for now
-    return(0.0);
+    Eigen::MatrixXd rowdiff = (locations.row(row1) - locations.row(row2)); 
+    return(std::sqrt((rowdiff.array()*rowdiff.array()).sum()));
 }
