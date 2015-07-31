@@ -27,6 +27,9 @@ Rcpp::NumericMatrix rcpp_caf_dist(SEXP inMatrix, SEXP ncore) {
                  workers[workers.size()-1]);
     }    
 
+    // todo, add receive logic here, create output matrix
+
     delete self;
+    // return dummy value for now
     return(wrap(locations));
 }

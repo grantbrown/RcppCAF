@@ -12,19 +12,19 @@ OBJECTS = $(SOURCES:.cpp=.o)
 OBJECTS1 = $(SOURCES1:.cpp=.o)
 OBJECTS2 = $(SOURCES2:.cpp=.o)
  
-PKG_CPPFLAGS+= -std=c++11 -DCMAKE_INSTALL_LOCAL_ONLY=1 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/libcaf_core -I../inst/libcaf_io 
+PKG_CPPFLAGS+= -std=c++11 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/libcaf_core -I../inst/libcaf_io 
 
-PKG_LIBS += -L./libcaf_core -lrcaf_core -L./libcaf_io -lrcaf_io
+PKG_LIBS += -L$(abspath ./libcaf_core) -lrcaf_core -L$(abspath ./libcaf_io) -lrcaf_io
 
 all: $(SHLIB) 
 
 $(SHLIB): $(OBJECTS) libcaf_core/librcaf_core.so libcaf_io/librcaf_io.so
 
 libcaf_core/librcaf_core.so: $(OBJECTS1)
-	g++ -o libcaf_core/librcaf_core.so $(OBJECTS1) $(PKG_CPPFLAGS) -shared && cp libcaf_core/librcaf_core.so ../inst/libcaf_core
+	g++ -o libcaf_core/librcaf_core.so $(OBJECTS1) $(PKG_CPPFLAGS) -shared
 
 libcaf_io/librcaf_io.so: $(OBJECTS2) 
-	g++ -o libcaf_io/librcaf_io.so $(OBJECTS2) $(PKG_CPPFLAGS) -shared && cp libcaf_io/librcaf_io.so ../inst/libcaf_io
+	g++ -o libcaf_io/librcaf_io.so $(OBJECTS2) $(PKG_CPPFLAGS) -shared
 
 
 

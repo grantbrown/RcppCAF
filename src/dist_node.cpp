@@ -30,5 +30,6 @@ behavior dist_node::make_behavior(){
 
 double dist_node::calculateDistance(size_t row1, size_t row2)
 {
+    // Dummy code for now
     return(0.0);
 }
