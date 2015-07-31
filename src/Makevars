@@ -1,30 +1,18 @@
 ROOT_DIR := $(abspath .)                                                        
 $(info The compilation root directory is: $(ROOT_DIR))                          
 $(info The name of the shared library to be created is: $(SHLIB))               
-$(info The place R should look for librcaf_core.so is: $(abspath ./libcaf_core)) 
-$(info The place R should look for librcaf_io.so is: $(abspath ./libcaf_io)) 
 
-SOURCES = $(wildcard ./*.cpp)
-SOURCES1 = $(wildcard ./libcaf_core/*.cpp)
-SOURCES2 = $(wildcard ./libcaf_io/*.cpp)
+SOURCES = $(wildcard ./*.cpp ./libcaf_core/*.cpp ./libcaf_io/*.cpp)
 
 OBJECTS = $(SOURCES:.cpp=.o)
-OBJECTS1 = $(SOURCES1:.cpp=.o)
-OBJECTS2 = $(SOURCES2:.cpp=.o)
  
 PKG_CPPFLAGS+= -std=c++11 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/libcaf_core -I../inst/libcaf_io 
 
-PKG_LIBS += -L$(abspath ./libcaf_core) -lrcaf_core -L$(abspath ./libcaf_io) -lrcaf_io
-
 all: $(SHLIB) 
 
-$(SHLIB): $(OBJECTS) libcaf_core/librcaf_core.so libcaf_io/librcaf_io.so
+$(SHLIB): $(OBJECTS)
 
-libcaf_core/librcaf_core.so: $(OBJECTS1)
-	g++ -o libcaf_core/librcaf_core.so $(OBJECTS1) $(PKG_CPPFLAGS) -shared
 
-libcaf_io/librcaf_io.so: $(OBJECTS2) 
-	g++ -o libcaf_io/librcaf_io.so $(OBJECTS2) $(PKG_CPPFLAGS) -shared
 
 
 
