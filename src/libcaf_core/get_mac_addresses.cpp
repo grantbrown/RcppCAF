@@ -1,4 +1,3 @@
-// [[Rcpp::interfaces(cpp)]]
 #include "caf/config.hpp"
 #include "caf/detail/get_mac_addresses.hpp"
 
