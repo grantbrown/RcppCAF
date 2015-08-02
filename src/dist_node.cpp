@@ -1,7 +1,7 @@
 #include <dist_node.hpp>
 
 using namespace caf;
-
+// [[Rcpp::interfaces(cpp)]]
 dist_node::dist_node(Eigen::MatrixXd locs, actor pr) : 
                                             locations(locs),
                                             parent(pr)
