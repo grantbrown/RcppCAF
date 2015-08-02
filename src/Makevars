@@ -6,7 +6,7 @@ SOURCES = $(wildcard ./*.cpp ./libcaf_core/*.cpp ./libcaf_io/*.cpp)
 
 OBJECTS = $(SOURCES:.cpp=.o)
  
-PKG_CPPFLAGS+= -std=c++11 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/libcaf_core -I../inst/libcaf_io 
+PKG_CPPFLAGS+= -std=c++11 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/include
 
 all: $(SHLIB) 
 
