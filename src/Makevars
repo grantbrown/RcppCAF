@@ -1,16 +1,23 @@
-ROOT_DIR := $(abspath .)                                                        
 $(info The compilation root directory is: $(ROOT_DIR))                          
 $(info The name of the shared library to be created is: $(SHLIB))               
 
 SOURCES = $(wildcard ./*.cpp ./libcaf_core/*.cpp ./libcaf_io/*.cpp)
-
 OBJECTS = $(SOURCES:.cpp=.o)
+
+OBJECTS_CAF=./libcaf_core/abstract_actor.o ./libcaf_core/abstract_channel.o ./libcaf_core/abstract_coordinator.o ./libcaf_core/abstract_group.o ./libcaf_core/actor_addr.o ./libcaf_core/actor_companion.o ./libcaf_core/actor_namespace.o ./libcaf_core/actor.o ./libcaf_core/actor_ostream.o ./libcaf_core/actor_pool.o ./libcaf_core/actor_proxy.o ./libcaf_core/actor_registry.o ./libcaf_core/attachable.o ./libcaf_core/behavior_impl.o ./libcaf_core/behavior.o ./libcaf_core/behavior_stack.o ./libcaf_core/binary_deserializer.o ./libcaf_core/binary_serializer.o ./libcaf_core/blocking_actor.o ./libcaf_core/channel.o ./libcaf_core/concatenated_tuple.o ./libcaf_core/continue_helper.o ./libcaf_core/decorated_tuple.o ./libcaf_core/default_attachable.o ./libcaf_core/deserializer.o ./libcaf_core/detached_threads.o ./libcaf_core/duration.o ./libcaf_core/either.o ./libcaf_core/event_based_actor.o ./libcaf_core/exception.o ./libcaf_core/execution_unit.o ./libcaf_core/exit_reason.o ./libcaf_core/forwarding_actor_proxy.o ./libcaf_core/get_mac_addresses.o ./libcaf_core/get_process_id.o ./libcaf_core/get_root_uuid.o ./libcaf_core/group_manager.o ./libcaf_core/group.o ./libcaf_core/local_actor.o ./libcaf_core/logging.o ./libcaf_core/mailbox_element.o ./libcaf_core/match_case.o ./libcaf_core/memory_managed.o ./libcaf_core/memory.o ./libcaf_core/message_builder.o ./libcaf_core/message_data.o ./libcaf_core/message_handler.o ./libcaf_core/message.o ./libcaf_core/node_id.o ./libcaf_core/ref_counted.o ./libcaf_core/replies_to.o ./libcaf_core/response_promise.o ./libcaf_core/resumable.o ./libcaf_core/ripemd_160.o ./libcaf_core/run_program.o ./libcaf_core/scoped_actor.o ./libcaf_core/serializer.o ./libcaf_core/set_scheduler.o ./libcaf_core/shared_spinlock.o ./libcaf_core/shutdown.o ./libcaf_core/singletons.o ./libcaf_core/string_algorithms.o ./libcaf_core/string_serialization.o ./libcaf_core/sync_request_bouncer.o ./libcaf_core/try_match.o ./libcaf_core/uniform_type_info_map.o ./libcaf_core/uniform_type_info.o ./libcaf_io/acceptor_manager.o ./libcaf_io/basp_broker.o ./libcaf_io/broker.o ./libcaf_io/default_multiplexer.o ./libcaf_io/hook.o ./libcaf_io/interfaces.o ./libcaf_io/manager.o ./libcaf_io/max_msg_size.o ./libcaf_io/middleman.o ./libcaf_io/multiplexer.o ./libcaf_io/publish_local_groups.o ./libcaf_io/publish.o ./libcaf_io/remote_actor.o ./libcaf_io/remote_group.o ./libcaf_io/set_middleman.o ./libcaf_io/stream_manager.o ./libcaf_io/unpublish.o
  
 PKG_CPPFLAGS+= -std=c++11 -Dlibcaf_core_shared_EXPORTS -Wall -pedantic -pthread -fPIC -O2 -g -fPIC -I../inst -I../inst/include
 
-all: $(SHLIB) 
+all: $(SHLIB) ../inst/libcaf_main.a
 
-$(SHLIB): $(OBJECTS)
+$(SHLIB): $(OBJECTS) 
+
+../inst/libcaf_main.a: $(OBJECTS_CAF)
+	ar -rvs ../inst/libcaf_main.a $(OBJECTS_CAF)
+
+
+
+
 
 
 
