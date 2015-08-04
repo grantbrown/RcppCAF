@@ -1,4 +1,4 @@
-useDynLib(RcppCAF, .registration=TRUE)
+useDynLib(RcppCAF)
 export(CAFdist)
 export(LdFlags)
 import(methods, Rcpp)

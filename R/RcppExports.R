@@ -5,7 +5,3 @@ rcpp_caf_dist <- function(inMatrix, ncore) {
     .Call('RcppCAF_rcpp_caf_dist', PACKAGE = 'RcppCAF', inMatrix, ncore)
 }
 
-# Register entry points for exported C++ functions
-methods::setLoadAction(function(ns) {
-    .Call('RcppCAF_RcppExport_registerCCallable', PACKAGE = 'RcppCAF')
-})
