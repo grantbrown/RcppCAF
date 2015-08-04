@@ -53,12 +53,7 @@ CAFdist(x, method = "euclidean", diag = FALSE, upper = FALSE, p = 2, cores = 1)
   Springer.
 }
 \seealso{
-  \code{\link[cluster]{daisy}} in the \CRANpkg{cluster} package with more
-  possibilities in the case of \emph{mixed} (continuous / categorical)
-  variables.
-  \code{\link{hclust}}.
   \code{\link{dist}}.
-
 }
 \examples{
 x <- matrix(rnorm(100), nrow = 5)
