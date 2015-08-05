@@ -8,5 +8,8 @@ Maintainer: Grant Brown <grant-brown@uiowa.edu>
 OS_type: unix
 Description: The CAF library (available at http://actor-framework.org/) is an intuitive framework providing concurency to C++ code using an actor model rather than low level threading concepts. This provides a lightweight way to parallelize computationally intensive C++ code.  
 License: GPL (>= 3)
+Depends: R (>= 3.1.2)
 Imports: Rcpp (>= 0.11.6), methods
 LinkingTo: Rcpp, RcppEigen
+Suggests: pkgKitten
+URL: http://github.com/grantbrown/RcppCAF

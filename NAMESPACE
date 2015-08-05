@@ -1,4 +1,5 @@
 useDynLib(RcppCAF)
 export(CAFdist)
+export(RcppCAF.package.skeleton)
 export(LdFlags)
 import(methods, Rcpp)
