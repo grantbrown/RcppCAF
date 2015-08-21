@@ -1,2 +1,5 @@
 language: r
 sudo: required
+
+gcc:
+  - "4.8"
