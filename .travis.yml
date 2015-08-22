@@ -15,5 +15,5 @@ before_install:
   - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.8 50
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 50
   - export CXX="g++-4.8" CC="gcc-4.8"
-  -echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+  - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
 
