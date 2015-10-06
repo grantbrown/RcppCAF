@@ -11,7 +11,8 @@ Installation instructions are available [on the wiki](https://github.com/grantbr
 
 Documentation
 --------------
-Documentation is available as part of the package, and additional examples are under development. 
+Documentation is available as part of the package, and additional examples are under development. In the meantime, 
+the [CAF](http://actor-framework.org/) project has excellent documentation. 
 
 
 <img src="https://travis-ci.org/grantbrown/RcppCAF.svg"/>
